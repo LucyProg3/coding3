@@ -27,8 +27,9 @@ var BombGeneratorArr=[]
 
 var side = 35;
 
+
 function setup() {
-    frameRate(500);
+    frameRate(5);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
     var row = 50, column = 50;
@@ -68,6 +69,7 @@ function setup() {
             else if (matrix[y][x] == 4) {
                 let randBomb = new Bomber(x, y);
                 BombArr.push(randBomb);
+                // explode()
             }
             else if (matrix[y][x] == 5) {
                 if (BombDestroyerArr.length <= 20) {
@@ -116,18 +118,21 @@ function drawMatrix() {
         }
     }
 }
-var off = false;
+
 
 function mouseClicked()
 {
-    off = true;
+    let y = Math.floor(mouseY/side)
+    let x = Math.floor(mouseX/side)
+    matrix[y][x]=4
 }
+
+
+
 
 function draw() {
 
-    if(off)
-        noLoop();
-    // frameCount();
+    
     if (frameCount <= 30) {
         weather = "winter";
         color("#f7f7f7");
@@ -151,7 +156,7 @@ function draw() {
     }
 
     drawMatrix();
-    frameRate(30);
+
         
     
     for (var i in grassArr) {
@@ -170,6 +175,7 @@ function draw() {
     }
     for (var i in BombArr) {
         BombArr[i].explode();
+        console.log(BombArr[i])
     }
     for (var i in BombDestroyerArr) {
         BombDestroyerArr[i].destroy();

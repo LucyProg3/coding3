@@ -1,19 +1,18 @@
-    class GrassEater extends LivingCreature {
-    
+class GrassEater extends LivingCreature {
+
     constructor(x, y) {
         super(x, y);
-        this.gender=this.getRandomgender()
+        this.gender = this.getRandomgender()
         this.energy = Math.round(random(10, 20));
         this.directions = [];
     }
 
-getRandomgender(){
-if (Math.floor(Math.random() * 2) == 1 )
- gender.female
- else
-  gender.male;
-console.log(`Random Gender:`, randomGender);
-}
+    getRandomgender() {
+        if (Math.floor(Math.random()))
+            this.gender = "female"
+        else
+            this.gender = "male";
+    }
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -27,13 +26,13 @@ console.log(`Random Gender:`, randomGender);
         ];
     }
 
-    
+
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character);
     }
 
-    
+
     eat() {
         var grassCells = this.chooseCell(1);
         if (grassCells.length != 0) {
@@ -60,7 +59,7 @@ console.log(`Random Gender:`, randomGender);
         else this.move();
     }
 
-    
+
     move() {
         if (this.energy <= 0) this.die();
         else {
@@ -97,12 +96,12 @@ console.log(`Random Gender:`, randomGender);
                 console.log('New Grass Eater was born successfully!');
             }
             if (weather == 'winter') this.energy = 13;
-            else if (weather == 'summer') this.energy = 7; 
-            else this.energy = 10; 
+            else if (weather == 'summer') this.energy = 7;
+            else this.energy = 10;
         }
     }
 
-    
+
     die() {
         matrix[this.y][this.x] = 0;
         for (var i in grassEaterArr) {
